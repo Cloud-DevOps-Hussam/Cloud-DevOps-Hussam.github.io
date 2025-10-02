@@ -5,89 +5,279 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Company Website</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
         header {
-            background-color: #007BFF;
+            background: linear-gradient(135deg, #007BFF, #0056b3);
             color: white;
-            padding: 10px 20px;
+            padding: 80px 20px 40px;
             text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background-color: #0056b3;
+            background-color: rgba(0, 86, 179, 0.95);
+            backdrop-filter: blur(10px);
             display: flex;
             justify-content: center;
             z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
+        
         nav a {
             color: white;
-            padding: 14px 20px;
+            padding: 16px 24px;
             text-decoration: none;
             text-align: center;
+            transition: all 0.3s ease;
+            font-weight: 500;
         }
+        
         nav a:hover {
             background-color: #003d80;
+            transform: translateY(-2px);
         }
+        
         section {
-            padding: 70px 20px 20px; /* Added padding to prevent overlap with fixed navbar */
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            text-align: center;
         }
-        .main-title {
-            margin-top: 60px; /* Space between navbar and main title */
+        
+        section h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #007BFF;
+            position: relative;
+            display: inline-block;
         }
-        .product-images {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-        }
-        .product-images img {
-            max-width: 200px;
-            margin: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .branch {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 20px 0;
-        }
-        footer {
+        
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
             background-color: #007BFF;
+        }
+        
+        section p {
+            font-size: 1.1rem;
+            margin: 20px auto;
+            max-width: 800px;
+            line-height: 1.8;
+        }
+        
+        #about {
+            background-color: #f8f9fa;
+        }
+        
+        #contact {
+            background-color: white;
+        }
+        
+        #contact p {
+            margin: 15px 0;
+            font-size: 1.1rem;
+        }
+        
+        #products {
+            background-color: #f8f9fa;
+        }
+        
+        .product-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            padding: 0 20px;
+        }
+        
+        .product-images img {
+            width: 100%;
+            height: auto;
+            max-width: 400px;
+            margin: 0 auto;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: block;
+        }
+        
+        .product-images img:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        #branches {
+            background-color: white;
+        }
+        
+        .branches-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .branch {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .branch:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .branch h3 {
+            color: #007BFF;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .branch p {
+            color: #666;
+            font-size: 1rem;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, #007BFF, #0056b3);
             color: white;
             text-align: center;
-            padding: 10px 0;
-            position: relative;
-            bottom: 0;
-            width: 100%;
+            padding: 20px 0;
+            margin-top: 40px;
         }
+        
         .scroll-to-top {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #007BFF;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #007BFF, #0056b3);
             color: white;
             border: none;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             font-size: 24px;
             cursor: pointer;
-            display: none; /* Hidden by default */
+            display: none;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 999;
         }
+        
         .scroll-to-top:hover {
-            background-color: #0056b3;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
         }
-        @media (max-width: 600px) {
+        
+        /* Tablet screens */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav a {
+                padding: 12px 16px;
+                font-size: 0.9rem;
+            }
+            
+            section {
+                padding: 40px 15px;
+            }
+            
+            section h2 {
+                font-size: 1.7rem;
+            }
+            
+            .product-images {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+            }
+            
+            .branches-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Mobile screens */
+        @media (max-width: 480px) {
+            header {
+                padding: 70px 15px 30px;
+            }
+            
+            header h1 {
+                font-size: 1.6rem;
+            }
+            
             nav {
                 flex-direction: column;
+            }
+            
+            nav a {
+                padding: 12px;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            section {
+                padding: 30px 10px;
+            }
+            
+            section h2 {
+                font-size: 1.5rem;
+            }
+            
+            section p {
+                font-size: 1rem;
+            }
+            
+            .product-images {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .scroll-to-top {
+                width: 45px;
+                height: 45px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 20px;
             }
         }
     </style>
@@ -95,7 +285,8 @@
 <body>
 
 <header>
-    <h1 class="main-title">Welcome to Our Company</h1>
+    <h1>Welcome to Our Company</h1>
+    <p>Excellence in Every Product</p>
 </header>
 
 <nav>
@@ -107,37 +298,43 @@
 
 <section id="about">
     <h2>About Us</h2>
-    <p>We are a leading company in our industry, dedicated to providing top-quality products and services to our customers.</p>
+    <p>We are a leading company in our industry, dedicated to providing top-quality products and services to our customers. Our commitment to excellence and innovation drives everything we do, ensuring that we meet and exceed the expectations of those we serve.</p>
 </section>
 
 <section id="contact">
     <h2>Contact Us</h2>
-    <p>Email: info@ourcompany.com</p>
-    <p>Phone: (123) 456-7890</p>
+    <p><strong>Email:</strong> info@ourcompany.com</p>
+    <p><strong>Phone:</strong> (123) 456-7890</p>
+    <p><strong>Address:</strong> 123 Business Street, Commerce City</p>
 </section>
 
 <section id="products">
     <h2>Our Products</h2>
     <div class="product-images">
-        <img src="product1.jpg" alt="Product 1">
-        <img src="product2.jpg" alt="Product 2">
-        <img src="product3.jpg" alt="Product 3">
+        <img src="https://via.placeholder.com/400x300/007BFF/FFFFFF?text=Product+1" alt="Product 1">
+        <img src="https://via.placeholder.com/400x300/0056b3/FFFFFF?text=Product+2" alt="Product 2">
+        <img src="https://via.placeholder.com/400x300/003d80/FFFFFF?text=Product+3" alt="Product 3">
     </div>
 </section>
 
 <section id="branches">
     <h2>Our Branches</h2>
-    <div class="branch">
-        <h3>Branch 1</h3>
-        <p>Location: City A</p>
-    </div>
-    <div class="branch">
-        <h3>Branch 2</h3>
-        <p>Location: City B</p>
-    </div>
-    <div class="branch">
-        <h3>Branch 3</h3>
-        <p>Location: City C</p>
+    <div class="branches-container">
+        <div class="branch">
+            <h3>Branch 1</h3>
+            <p><strong>Location:</strong> City A</p>
+            <p>Serving the community since 2015</p>
+        </div>
+        <div class="branch">
+            <h3>Branch 2</h3>
+            <p><strong>Location:</strong> City B</p>
+            <p>Your trusted local partner</p>
+        </div>
+        <div class="branch">
+            <h3>Branch 3</h3>
+            <p><strong>Location:</strong> City C</p>
+            <p>Quality service guaranteed</p>
+        </div>
     </div>
 </section>
 
@@ -162,6 +359,22 @@
     function scrollToTop() {
         window.scrollTo({top: 0, behavior: 'smooth'});
     }
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('nav a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const offset = 60;
+                const targetPosition = target.offsetTop - offset;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
 </script>
 
 </body>
