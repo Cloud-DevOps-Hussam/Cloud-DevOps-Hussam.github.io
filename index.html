@@ -17,9 +17,13 @@
             text-align: center;
         }
         nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #0056b3;
             display: flex;
             justify-content: center;
-            background-color: #0056b3;
+            z-index: 1000;
         }
         nav a {
             color: white;
@@ -31,7 +35,7 @@
             background-color: #003d80;
         }
         section {
-            padding: 20px;
+            padding: 70px 20px 20px; /* Added padding to prevent overlap with fixed navbar */
         }
         .product-images {
             display: flex;
@@ -58,6 +62,25 @@
             position: relative;
             bottom: 0;
             width: 100%;
+        }
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            display: none; /* Hidden by default */
+            align-items: center;
+            justify-content: center;
+        }
+        .scroll-to-top:hover {
+            background-color: #0056b3;
         }
         @media (max-width: 600px) {
             nav {
@@ -119,6 +142,25 @@
 <footer>
     <p>&copy; 2025 Our Company. All rights reserved.</p>
 </footer>
+
+<button class="scroll-to-top" onclick="scrollToTop()">↑</button>
+
+<script>
+    // Show the scroll-to-top button when the user scrolls down
+    window.onscroll = function() {
+        const button = document.querySelector('.scroll-to-top');
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            button.style.display = "flex";
+        } else {
+            button.style.display = "none";
+        }
+    };
+
+    // Function to scroll to the top of the page
+    function scrollToTop() {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+</script>
 
 </body>
 </html>
