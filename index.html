@@ -37,6 +37,9 @@
         section {
             padding: 70px 20px 20px; /* Added padding to prevent overlap with fixed navbar */
         }
+        .main-title {
+            margin-top: 60px; /* Space between navbar and main title */
+        }
         .product-images {
             display: flex;
             flex-wrap: wrap;
@@ -92,15 +95,14 @@
 <body>
 
 <header>
-    <h1>Welcome to Our Company</h1>
+    <h1 class="main-title">Welcome to Our Company</h1>
 </header>
 
 <nav>
     <a href="#about">About Us</a>
+    <a href="#contact">Contact</a>
     <a href="#products">Products</a>
     <a href="#branches">Branches</a>
-    <a href="#contact">Contact</a>
-
 </nav>
 
 <section id="about">
