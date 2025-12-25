@@ -24,6 +24,20 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  check:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print PR details
+        run: |
+          echo "PR number: ${{ github.event.pull_request.number }}"
+          echo "PR title: ${{ github.event.pull_request.title }}"
+          echo "PR author: ${{ github.event.pull_request.user.login }}"
+          echo "PR state: ${{ github.event.pull_request.state }}"
+          echo "Base branch: ${{ github.event.pull_request.base.ref }}"
+          echo "Head branch: ${{ github.event.pull_request.head.ref }}"
+          echo "PR URL: ${{ github.event.pull_request.html_url }}"      
+     
   deploy:
     if: github.event_name != 'pull_request'
     environment:
